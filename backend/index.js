@@ -11,6 +11,9 @@ app.use(cors())
 const tripRoutes = require('./routes/trip.routes')
 
 app.use('/trip', tripRoutes) // http://localhost:3001/trip --> POST/GET/GET by ID
+app.use((req,res)=>{
+    res.status(404).send('<h1>Page not found<h1>')
+})
 
 app.get('/hello', (req,res)=>{
     res.send('Hello World!')
