@@ -1,12 +1,18 @@
 const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
+const path=require('path');
 
 const app = express()
 PORT = process.env.PORT
 const conn = require('./conn')
 app.use(express.json())
-app.use(cors())
+const _dirname = path.dirname("");
+const buildPath = path.join(_dirname, '../frontend/build');
+app.use(express.static(buildPath));
+app.use(cors({
+    "origin": "*", // Allow all origins
+}))
 
 const tripRoutes = require('./routes/trip.routes')
 
